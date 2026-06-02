@@ -102,8 +102,5 @@ Prefer small, targeted edits. Keep the MCP server contract stable unless the tas
 ## Versioning
 This server follows semantic versioning. Bump the patch version in `pyproject.toml` for bug fixes, minor for new tools, major for breaking protocol changes.
 
-
-# Add a blank line to mcp-todo-server/AGENTS.md
-
 ---
 
