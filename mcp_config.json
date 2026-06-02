@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "file": {
-      "command": "python",
-      "args": ["-m", "mcp_file"],
-      "cwd": "${workspaceFolder}/mcp-file-server"
-    }
-  }
-}
