@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "unit-converter": {
+      "command": "python",
+      "args": ["-m", "mcp_unit_converter"],
+      "cwd": "${workspaceFolder}/mcp-unit-converter"
+    }
+  }
+}
