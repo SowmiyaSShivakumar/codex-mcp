@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-todo-server"
+version = "0.1.0"
+description = "MCP server for managing todo items"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[project.scripts]
+mcp-todo = "mcp_todo.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_todo"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
