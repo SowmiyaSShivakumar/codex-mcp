@@ -154,6 +154,11 @@ Pull requests should include:
 
 ## Agent Notes
 When editing the MCP tools, keep JSON response keys stable unless you are intentionally making a breaking change.
+## Versioning
+This server follows semantic versioning. Bump the patch version in `pyproject.toml` for bug fixes, minor for new tools, major for breaking protocol changes.
+
+
+# Add a blank line to mcp-todo-server/AGENTS.md
 
 ---
 

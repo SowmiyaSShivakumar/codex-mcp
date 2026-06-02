@@ -52,3 +52,9 @@ Pull requests should include:
 
 ## Agent-Specific Notes
 Prefer small, targeted edits. Keep the MCP server contract stable unless the task explicitly requires a protocol or API change.
+
+## Versioning
+This server follows semantic versioning. Bump the patch version in `pyproject.toml` for bug fixes, minor for new tools, major for breaking protocol changes.
+
+
+# Add a blank line to mcp-todo-server/AGENTS.md

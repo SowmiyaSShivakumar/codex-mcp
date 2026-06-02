@@ -7,7 +7,7 @@ Writes aggregated output to root AGENTS.md and root .codex/skills/.
 import shutil
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path.cwd()
 MCP_DIRS = sorted([d for d in REPO_ROOT.iterdir() if d.is_dir() and d.name.startswith("mcp-")])
 
 
