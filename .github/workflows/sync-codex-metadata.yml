@@ -22,18 +22,17 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: Get aggregation script from main
-        run: git checkout origin/main -- scripts/generate_codex_metadata.py
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Run aggregation script
-        run: python scripts/generate_codex_metadata.py
+      - name: Fetch and run aggregation script from main
+        run: |
+          git fetch origin main
+          git show origin/main:scripts/generate_codex_metadata.py > /tmp/generate_codex_metadata.py
+          python /tmp/generate_codex_metadata.py
 
       - name: Commit and push if changed
         run: |
