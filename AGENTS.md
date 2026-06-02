@@ -1,3 +1,12 @@
+# AGENTS.md
+
+> Auto-generated — do not edit manually.
+> Source of truth: each `mcp-*/AGENTS.md`.
+
+---
+
+## mcp-todo-server
+
 # Repository Guidelines
 
 ## Project Structure & Module Organization
@@ -55,3 +64,6 @@ Prefer small, targeted edits. Keep the MCP server contract stable unless the tas
 
 ## Versioning
 This server follows semantic versioning. Bump the patch version in `pyproject.toml` for bug fixes, minor for new tools, major for breaking protocol changes.
+
+---
+
