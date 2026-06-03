@@ -42,7 +42,7 @@ jobs:
             az acr build \
               --registry ${{ secrets.AZURE_REGISTRY_NAME }} \
               --image $server:${{ github.sha }} \
-              --file $server/Dockerfile \
+              --file mcp-servers/$server/Dockerfile \
               .
 
             if [ -z "$EXISTS" ]; then

@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths:
-      - "**/AGENTS.md"
-      - "**/.codex/skills/**"
+      - "mcp-servers/**/AGENTS.md"
+      - "mcp-servers/**/.codex/skills/**"
 
 permissions:
   contents: write
@@ -32,9 +32,9 @@ jobs:
       - name: Bring in other MCP servers from main and run script
         run: |
           git fetch origin main
-          for dir in $(git ls-tree --name-only origin/main); do
-            if [ ! -d "$dir" ] && git show origin/main:"$dir/AGENTS.md" > /dev/null 2>&1; then
-              git archive origin/main "$dir" | tar -x
+          for dir in $(git ls-tree --name-only origin/main -- mcp-servers/); do
+            if [ ! -d "mcp-servers/$dir" ] && git show origin/main:"mcp-servers/$dir/AGENTS.md" > /dev/null 2>&1; then
+              git archive origin/main "mcp-servers/$dir" | tar -x
             fi
           done
           git show origin/main:scripts/generate_codex_metadata.py > /tmp/generate_codex_metadata.py

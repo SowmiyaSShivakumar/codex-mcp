@@ -8,8 +8,8 @@ import shutil
 from pathlib import Path
 
 REPO_ROOT = Path.cwd()
-MCP_DIRS = sorted([d for d in REPO_ROOT.iterdir() if d.is_dir() and (d / "AGENTS.md").exists()])
-
+MCP_SERVERS_ROOT = REPO_ROOT / "mcp-servers"
+MCP_DIRS = sorted([d for d in MCP_SERVERS_ROOT.iterdir() if d.is_dir() and (d / "AGENTS.md").exists()])
 
 def generate_root_agents_md():
     lines = []
