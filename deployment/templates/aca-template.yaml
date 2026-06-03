@@ -1,0 +1,23 @@
+name: {{SERVER_NAME}}
+type: Microsoft.App/containerApps
+location: {{LOCATION}}
+resourceGroup: {{RESOURCE_GROUP}}
+properties:
+  managedEnvironmentId: /subscriptions/{{SUBSCRIPTION_ID}}/resourceGroups/{{RESOURCE_GROUP}}/providers/Microsoft.App/managedEnvironments/{{CA_ENVIRONMENT}}
+  configuration:
+    ingress:
+      external: true
+      targetPort: 8000
+    registries:
+      - server: {{REGISTRY_NAME}}.azurecr.io
+        identity: system
+  template:
+    containers:
+      - name: {{SERVER_NAME}}
+        image: {{REGISTRY_NAME}}.azurecr.io/{{SERVER_NAME}}:{{IMAGE_TAG}}
+        resources:
+          cpu: 0.5
+          memory: 1Gi
+    scale:
+      minReplicas: {{MIN_REPLICAS}}
+      maxReplicas: {{MAX_REPLICAS}}
