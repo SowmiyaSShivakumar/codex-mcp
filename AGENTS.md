@@ -5,6 +5,41 @@
 
 ---
 
+## math-server
+
+# Repository Guidelines
+
+## Project Structure & Module Organization
+This is a small Python MCP server with a `src` layout.
+
+- `src/math_server/`: runtime package code
+- `src/math_server/server.py`: MCP tool registration and server wiring
+- `src/math_server/operations.py`: arithmetic helpers used by the tools
+- `src/math_server/__main__.py`: CLI entry point for `python -m math_server`
+- `tests/`: unit tests, currently centered on `tests/test_operations.py`
+- `mcp_config.json`: local MCP launch configuration
+
+## Build, Test, and Development Commands
+Use Python 3.11 or newer.
+
+- `python -m pip install -e .[dev]`: install the package in editable mode with test dependencies
+- `python -m pytest`: run the test suite under `tests/`
+- `python -m math_server`: start the MCP server locally
+
+## Coding Style & Naming Conventions
+Follow standard Python style: 4-space indentation, `snake_case` for functions and modules, and `PascalCase` for classes and test cases. Keep arithmetic helpers small and pure, with explicit type hints on public functions when practical. No formatter or linter is configured, so match the surrounding style.
+
+## Testing Guidelines
+Tests use `pytest`, but the current tests are written with `unittest` in `tests/test_operations.py`. Name new tests `test_*.py` and prefer focused cases for each arithmetic operation, including edge cases such as division by zero. Use fixed inputs and deterministic assertions.
+
+## Commit & Pull Request Guidelines
+The repository history does not establish a strict commit convention, so use short, imperative messages such as `Add divide error test`. Pull requests should include a brief summary, the commands run to validate the change, and any behavior changes to the MCP tool responses.
+
+## Security & Configuration Tips
+Keep filesystem and config edits narrow. Avoid broad changes to `mcp_config.json` unless you are updating the local runtime setup, and prefer isolated test data over environment-dependent behavior.
+
+---
+
 ## mcp-file-server
 
 # Repository Guidelines
@@ -99,61 +134,6 @@ Pull requests should include:
 ## Agent-Specific Notes
 Prefer small, targeted edits. Keep the MCP server contract stable unless the task explicitly requires a protocol or API change.
 
----
-
-## mcp-unit-converter
-
-# Repository Guidelines
-
-## Project Structure & Module Organization
-This repository is a small Python MCP server.
-
-- `src/mcp_unit_converter/` contains the runtime package.
-- `src/mcp_unit_converter/server.py` defines the MCP tools.
-- `src/mcp_unit_converter/conversions.py` holds pure conversion helpers.
-- `src/mcp_unit_converter/__main__.py` is the CLI entry point for `python -m mcp_unit_converter`.
-- `tests/` contains unit tests, currently centered on conversion logic.
-- `mcp_config.json` shows the local MCP server launch configuration.
-
-## Build, Test, and Development Commands
-Use Python 3.11 or newer.
-
-- `python -m pip install -e .[dev]` installs the package in editable mode with test dependencies.
-- `python -m pytest` runs the full test suite under `tests/`.
-- `python -m mcp_unit_converter` starts the MCP server locally.
-
-The project uses Hatchling as the build backend, but no custom build script is defined.
-
-## Coding Style & Naming Conventions
-Follow standard Python conventions:
-
-- Use 4-space indentation.
-- Prefer type annotations for public functions.
-- Keep conversion helpers pure and side-effect free.
-- Name functions with `verb_noun` clarity, such as `meters_to_feet` or `convert_celsius_to_fahrenheit`.
-- Use lowercase module names with underscores.
-
-No formatter or linter is configured in `pyproject.toml`, so keep changes consistent with the surrounding code.
-
-## Testing Guidelines
-Tests use `pytest` with `unittest`-style test cases.
-
-- Put new tests in `tests/` and name them `test_*.py`.
-- Keep helper tests close to the behavior they verify.
-- Prefer `assertAlmostEqual` for floating-point conversions.
-- Add round-trip tests when a conversion has an inverse.
-
-## Commit & Pull Request Guidelines
-This workspace does not include Git history, so no repository-specific commit pattern can be inferred. Use short, imperative commit messages such as `Add mass conversion tests`.
-
-Pull requests should include:
-
-- A brief summary of the change and why it is needed.
-- Notes on tests run, especially `python -m pytest`.
-- Example inputs/outputs if a tool response changes.
-
-## Agent Notes
-When editing the MCP tools, keep JSON response keys stable unless you are intentionally making a breaking change.
 ## Versioning
 This server follows semantic versioning. Bump the patch version in `pyproject.toml` for bug fixes, minor for new tools, major for breaking protocol changes.
 
