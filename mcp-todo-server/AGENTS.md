@@ -54,4 +54,4 @@ Pull requests should include:
 Prefer small, targeted edits. Keep the MCP server contract stable unless the task explicitly requires a protocol or API change.
 
 ## Versioning
-This server follows semantic versioning. Bump the patch version in `pyproject.toml` for bug fixes, minor for new tools, major for breaking protocol changes.
+This server follows semantic versioning. Add the patch version in `pyproject.toml` for bug fixes, minor for new tools, major for breaking protocol changes.
