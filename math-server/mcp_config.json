@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "math-server": {
+      "command": "python",
+      "args": [
+        "-m",
+        "math_server"
+      ],
+      "cwd": "."
+    }
+  }
+}
