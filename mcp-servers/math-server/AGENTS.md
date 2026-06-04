@@ -9,6 +9,7 @@ This is a small Python MCP server with a `src` layout.
 - `src/math_server/__main__.py`: CLI entry point for `python -m math_server`
 - `tests/`: unit tests, currently centered on `tests/test_operations.py`
 - `mcp_config.json`: local MCP launch configuration
+- Added requirements
 
 ## Build, Test, and Development Commands
 Use Python 3.11 or newer.
