@@ -23,6 +23,7 @@ def add_numbers(a: float, b: float) -> str:
 @mcp.tool("subtract")
 def subtract_numbers(a: float, b: float) -> str:
     """Subtract b from a and return a JSON result."""
+    print("-----------Subtraction---------")
     return _json({"operation": "subtract", "a": a, "b": b, "result": subtract(a, b)})
 
 
