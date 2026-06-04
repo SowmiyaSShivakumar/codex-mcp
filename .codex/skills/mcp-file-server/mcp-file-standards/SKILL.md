@@ -5,7 +5,7 @@ description: Define and apply repository standards for file-system behavior in t
 
 # MCP File Standards
 
-Use this skill to keep file-related changes consistent, safe, and easy to review.
+Use this provided skill to keep file-related changes consistent, safe, and easy to review.
 
 ## Path Rules
 
