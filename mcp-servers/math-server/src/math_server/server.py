@@ -16,6 +16,7 @@ def _json(data: dict) -> str:
 @mcp.tool("add")
 def add_numbers(a: float, b: float) -> str:
     """Add two numbers and return a JSON result."""
+    print("-----------Addition----------")
     return _json({"operation": "add", "a": a, "b": b, "result": add(a, b)})
 
 
