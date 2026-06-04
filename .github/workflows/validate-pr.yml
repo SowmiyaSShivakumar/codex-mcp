@@ -1,0 +1,64 @@
+name: Validate PR
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check AGENTS.md and .codex/skills/ updated
+        run: |
+          python - <<'EOF'
+          import subprocess
+          from pathlib import Path
+
+          REPO_ROOT = Path.cwd()
+          MCP_ROOT = REPO_ROOT / "mcp-servers"
+
+          result = subprocess.run(
+              ["git", "diff", "--name-only", "HEAD~1", "HEAD"],
+              capture_output=True, text=True
+          )
+
+          changed_files = result.stdout.strip().split("\n")
+
+          changed_servers = set()
+          for f in changed_files:
+              parts = Path(f).parts
+              if len(parts) > 2 and parts[0] == "mcp-servers":
+                  changed_servers.add(parts[1])
+
+          errors = []
+          for server in changed_servers:
+              folder = MCP_ROOT / server
+              agents = any("AGENTS.md" in f for f in changed_files if f.startswith(f"mcp-servers/{server}"))
+              codex = any(".codex/skills" in f for f in changed_files if f.startswith(f"mcp-servers/{server}"))
+
+              if not agents:
+                  errors.append(f"❌ {server}: AGENTS.md not updated")
+              if not codex:
+                  errors.append(f"❌ {server}: .codex/skills/ not updated")
+
+          if errors:
+              print("\nPR validation failed:")
+              for e in errors:
+                  print(e)
+              print("\nPlease update AGENTS.md and .codex/skills/ before merging.")
+              exit(1)
+          else:
+              print("✅ All servers have updated AGENTS.md and .codex/skills/")
+          EOF
